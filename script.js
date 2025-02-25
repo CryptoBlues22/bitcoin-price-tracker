@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const loader = document.getElementById('loader');
     const ctx = document.getElementById('btcChart').getContext('2d');
 
-    let btcChart;
+    let btcChart = null;
 
     document.getElementById('priceButton').addEventListener('click', function () {
         loader.style.display = 'block';
@@ -27,11 +27,16 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7')
             .then(response => response.json())
             .then(data => {
+                if (!data || !data.prices) {
+                    console.error("Invalid data format", data);
+                    return;
+                }
+
                 const prices = data.prices.map(entry => entry[1]); // Extract prices
                 const timestamps = data.prices.map(entry => new Date(entry[0]).toLocaleDateString());
 
-                // If the chart exists, destroy before re-creating
-                if (btcChart) {
+                // If the chart exists, destroy it before re-creating
+                if (btcChart !== null) {
                     btcChart.destroy();
                 }
 
@@ -58,11 +63,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         },
                         scales: {
                             x: {
-                                title: { display: true, text: 'Date', color: 'white' }, // White text
+                                title: { display: true, text: 'Date', color: 'white' },
                                 ticks: { color: 'white' }
                             },
                             y: {
-                                title: { display: true, text: 'Price (USD)', color: 'white' }, // White text
+                                title: { display: true, text: 'Price (USD)', color: 'white' },
                                 ticks: { color: 'white' }
                             }
                         }
