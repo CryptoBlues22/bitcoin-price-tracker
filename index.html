@@ -3,16 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitcoin Price Tracker</title>
+    <title>Bitcoin Price Checker</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: url('https://your-image-url.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        #loader img {
+            width: 50px;
+            height: 50px;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #FF9900;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 20px 0;
+        }
+
+        .price {
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+
+        .tradingview-widget-container {
+            margin-top: 30px;
+            width: 80%;
+            max-width: 800px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Bitcoin Price Tracker</h1>
-        <p id="price">Loading...</p>
-        <button onclick="fetchBitcoinPrice()">Get Price</button>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+    <h1>Bitcoin Price Checker</h1>
+    <p>Get the latest Bitcoin price with just one click!</p>
+    
+    <button onclick="fetchBitcoin
