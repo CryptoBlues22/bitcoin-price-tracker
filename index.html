@@ -20,10 +20,20 @@
             text-align: center;
         }
 
+        h1 {
+            font-size: 3rem;
+            margin: 20px 0;
+        }
+
         #loader img {
             width: 50px;
             height: 50px;
             margin-top: 20px;
+        }
+
+        .price {
+            font-size: 2rem;
+            margin: 20px 0;
         }
 
         footer {
@@ -40,16 +50,6 @@
             text-decoration: underline;
         }
 
-        h1 {
-            font-size: 3rem;
-            margin: 20px 0;
-        }
-
-        .price {
-            font-size: 2rem;
-            margin: 20px 0;
-        }
-
         .tradingview-widget-container {
             margin-top: 30px;
             width: 80%;
@@ -61,4 +61,16 @@
     <h1>Bitcoin Price Checker</h1>
     <p>Get the latest Bitcoin price with just one click!</p>
     
-    <button onclick="fetchBitcoin
+    <button onclick="fetchBitcoinPrice()">Check Price</button>
+    
+    <div id="loader" style="display:none;">
+        <img src="https://i.gifer.com/7bk.gif" alt="Loading...">
+    </div>
+    
+    <div id="price" class="price">Bitcoin Price: Loading...</div>
+    
+    <!-- Bitcoin Chart (TradingView) -->
+    <div class="tradingview-widget-container">
+        <div id="tradingview_c4a1a"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+        <script type="text/
