@@ -30,14 +30,15 @@ button:hover {
     margin-top: 20px;
 }
 
-/* Chart Styling */
+/* Dark Theme Chart */
 .chart-container {
     width: 90%;
     max-width: 800px;
     margin: 20px auto;
-    background: white;
+    background: #333;  /* Dark background */
     padding: 15px;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 canvas {
     width: 100% !important;

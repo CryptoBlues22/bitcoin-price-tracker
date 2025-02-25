@@ -51,9 +51,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                labels: { color: 'white' }  // White text
+                            }
+                        },
                         scales: {
-                            x: { title: { display: true, text: 'Date' } },
-                            y: { title: { display: true, text: 'Price (USD)' } }
+                            x: {
+                                title: { display: true, text: 'Date', color: 'white' }, // White text
+                                ticks: { color: 'white' }
+                            },
+                            y: {
+                                title: { display: true, text: 'Price (USD)', color: 'white' }, // White text
+                                ticks: { color: 'white' }
+                            }
                         }
                     }
                 });
