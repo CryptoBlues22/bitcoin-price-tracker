@@ -37,7 +37,7 @@
     <h1>Bitcoin Price Checker</h1>
     <p>Get the latest Bitcoin price with just one click!</p>
     
-    <button onclick="fetchBitcoinPrice()">Check Price</button>
+    <button id="priceButton">Check Price</button>
     
     <div id="loader">
         <img src="https://i.gifer.com/7bk.gif" alt="Loading...">
@@ -45,6 +45,7 @@
     
     <div id="price">Bitcoin Price: Loading...</div>
 
+    <!-- Move JavaScript to the bottom, after the HTML elements -->
     <script>
         // Define the function that fetches Bitcoin price
         function fetchBitcoinPrice() {
@@ -58,4 +59,11 @@
                     document.getElementById('loader').style.display = 'none'; // Hide loader
                 })
                 .catch(error => {
-                    console.error('Error fetching the Bitcoi
+                    console.error('Error fetching the Bitcoin price:', error);
+                    document.getElementById('price').innerText = 'Failed to load price.';
+                    document.getElementById('loader').style.display = 'none'; // Hide loader
+                });
+        }
+
+        // Add event listener to button after DOM content is loaded
+        document.addEventListener('DOMContentLoaded', funct
