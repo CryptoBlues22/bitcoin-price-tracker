@@ -4,56 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bitcoin Price Checker</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background: url('https://your-image-url.jpg') no-repeat center center fixed;
-            background-size: cover;
             font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #333;  /* Background color */
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
-            text-align: center;
+            padding: 20px;
         }
-
-        h1 {
-            font-size: 3rem;
-            margin: 20px 0;
+        button {
+            padding: 10px 20px;
+            background-color: #FF9900;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-size: 16px;
         }
-
-        #loader img {
-            width: 50px;
-            height: 50px;
+        button:hover {
+            background-color: #FF6600;
+        }
+        #price {
+            font-size: 24px;
             margin-top: 20px;
         }
-
-        .price {
-            font-size: 2rem;
-            margin: 20px 0;
-        }
-
-        footer {
-            text-align: center;
+        #loader {
+            display: none;
             margin-top: 20px;
-        }
-
-        footer a {
-            color: #FF9900;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .tradingview-widget-container {
-            margin-top: 30px;
-            width: 80%;
-            max-width: 800px;
         }
     </style>
 </head>
@@ -63,14 +39,23 @@
     
     <button onclick="fetchBitcoinPrice()">Check Price</button>
     
-    <div id="loader" style="display:none;">
+    <div id="loader">
         <img src="https://i.gifer.com/7bk.gif" alt="Loading...">
     </div>
     
-    <div id="price" class="price">Bitcoin Price: Loading...</div>
-    
-    <!-- Bitcoin Chart (TradingView) -->
-    <div class="tradingview-widget-container">
-        <div id="tradingview_c4a1a"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-        <script type="text/
+    <div id="price">Bitcoin Price: Loading...</div>
+
+    <script>
+        // Define the function that fetches Bitcoin price
+        function fetchBitcoinPrice() {
+            document.getElementById('loader').style.display = 'block'; // Show loader
+            
+            fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
+                .then(response => response.json())
+                .then(data => {
+                    const price = data.bitcoin.usd;
+                    document.getElementById('price').innerText = `Bitcoin Price: $${price}`;
+                    document.getElementById('loader').style.display = 'none'; // Hide loader
+                })
+                .catch(error => {
+                    console.error('Error fetching the Bitcoi
