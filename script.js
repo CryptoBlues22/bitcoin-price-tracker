@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loader.style.display = 'block';
         priceElement.innerText = "Fetching price...";
 
+        // Fetch latest Bitcoin price
         fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
             .then(response => response.json())
             .then(data => {
@@ -26,10 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7')
             .then(response => response.json())
             .then(data => {
-                const prices = data.prices.map(entry => entry[1]); // Extract price
+                const prices = data.prices.map(entry => entry[1]); // Extract prices
                 const timestamps = data.prices.map(entry => new Date(entry[0]).toLocaleDateString());
 
-                // If the chart already exists, destroy it before creating a new one
+                // If the chart exists, destroy before re-creating
                 if (btcChart) {
                     btcChart.destroy();
                 }
